@@ -71,6 +71,10 @@ const shoppingList = (function(){
         .then( (newItem) => {
           store.addItem(newItem);
           render();
+        })
+        .catch(err => {
+          store.setError(err);
+          render();
         });
     });
   }
@@ -89,7 +93,11 @@ const shoppingList = (function(){
         .then(() => { 
           store.findAndUpdate(id, {checked: checkedToggle});
           render();
-        });
+        })
+        .catch(err => {
+        store.setError(err);
+        render();
+      });
     });
   }
   
@@ -104,6 +112,10 @@ const shoppingList = (function(){
           store.findAndDelete(id);
           // render the updated shopping list
           render();
+        })
+        .catch(err => {
+        store.setError(err);
+        render();
         });
     });
   }
@@ -118,6 +130,10 @@ const shoppingList = (function(){
           store.findAndUpdate(id, {name: itemName});
           store.setItemIsEditing(id, false);
           render();
+        })
+        .catch(err => {
+        store.setError(err);
+        render();
         });
     });
   }
@@ -145,6 +161,10 @@ const shoppingList = (function(){
       render();
     });
   }
+
+  function handleErrorAlert(){
+    $('')
+  }
   
   function bindEventListeners() {
     handleNewItemSubmit();
@@ -154,6 +174,7 @@ const shoppingList = (function(){
     handleToggleFilterClick();
     handleShoppingListSearch();
     handleItemStartEditing();
+    handleErrorAlert();
   }
 
   // This object contains the only exposed methods from this module:

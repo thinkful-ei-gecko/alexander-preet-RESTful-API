@@ -32,12 +32,19 @@ const store = (function(){
     Object.assign(item, newData);
   };
 
+  const setError = function(err){
+    this.error = err;
+  }
+
+  const clearError = function(){
+    this.error = null; 
+  }
+
 
   return {
     items: [],
     hideCheckedItems: false,
     searchTerm: '',
-
     addItem,
     findById,
     findAndUpdate,
@@ -45,6 +52,9 @@ const store = (function(){
     toggleCheckedFilter,
     setSearchTerm,
     setItemIsEditing,
+    error: null,
+    setError,
+    clearError
   };
   
 }());
