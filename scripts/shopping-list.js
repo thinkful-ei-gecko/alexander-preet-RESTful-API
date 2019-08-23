@@ -59,6 +59,13 @@ const shoppingList = (function(){
   
     // insert that HTML into the DOM
     $('.js-shopping-list').html(shoppingListItemsString);
+
+    if (store.error != null) {
+      $('.error-alert').html(store.error)
+    }
+      else {
+        $('.error-alert').html('')
+      };
   }
   
   function handleNewItemSubmit() {

@@ -19,6 +19,9 @@ const api = (function(){
             }
             return data; 
         })
+        .catch(err => {
+            return Promise.reject(error);
+          });
   }
 
   function getItems(){
