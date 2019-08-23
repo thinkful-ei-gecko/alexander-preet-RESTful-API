@@ -87,11 +87,11 @@ const shoppingList = (function(){
       const checkedToggle = !store.findById(id).checkedToggle;
       api.updateItem(id, {checked:checkedToggle})
         .then(() => { 
-        store.findAndUpdate(id, {checked: checkedToggle});
-        render();
+          store.findAndUpdate(id, {checked: checkedToggle});
+          render();
+        });
     });
-  });
-}
+  }
   
   function handleDeleteItemClicked() {
     // like in `handleItemCheckClicked`, we use event delegation
@@ -99,9 +99,12 @@ const shoppingList = (function(){
       // get the index of the item in store.items
       const id = getItemIdFromElement(event.currentTarget);
       // delete the item
-      store.findAndDelete(id);
-      // render the updated shopping list
-      render();
+      api.deleteItem(id)
+        .then(() => {
+          store.findAndDelete(id);
+          // render the updated shopping list
+          render();
+        });
     });
   }
   
@@ -111,11 +114,11 @@ const shoppingList = (function(){
       const id = getItemIdFromElement(event.currentTarget);
       const itemName = $(event.currentTarget).find('.shopping-item').val();
       api.updateItem(id, {name: itemName})
-      .then(() => {
-        store.findAndUpdate(id, {name: itemName});
-        store.setItemIsEditing(id, false);
-        render();
-      });
+        .then(() => {
+          store.findAndUpdate(id, {name: itemName});
+          store.setItemIsEditing(id, false);
+          render();
+        });
     });
   }
 
