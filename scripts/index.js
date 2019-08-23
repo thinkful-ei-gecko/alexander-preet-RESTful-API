@@ -7,14 +7,13 @@ $(document).ready(function() {
   shoppingList.render();
 
   api.getItems()
-    .then(res => res.json());
-
-  api.getItems()
-    .then(res => res.json())
-    .then((items) => {
-      items.forEach((item) => store.addItem(item));
-      shoppingList.render();
-    });
+  .then(res => res.json())
+  .then((items) => {
+    const item = items[0];
+    return api.updateItem(item.id, { name: 'foobar' });
+  })
+  .then(res => res.json())
+  .then(() => console.log('updated!'));
 });
 
 store.items.push(Item.create('apples'));
