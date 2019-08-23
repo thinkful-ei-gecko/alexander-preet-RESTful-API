@@ -8,4 +8,4 @@ $(document).ready(function() {
 
 });
 
-store.items.push(Item.create('apples'));
+//store.items.push(Item.create('apples'));
