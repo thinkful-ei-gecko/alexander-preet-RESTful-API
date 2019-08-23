@@ -6,10 +6,7 @@ $(document).ready(function() {
   shoppingList.render();
 
   api.getItems()
-  .then(res => console.log(res));
-  console.log(api.BASE_URL);
-  
+  .then(res => res.json())
 });
 
 store.items.push(Item.create('apples'));
-
