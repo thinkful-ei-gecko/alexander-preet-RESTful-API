@@ -9,7 +9,9 @@ const api = (function(){
   }
   
   function createItem(name) {
+    console.log(name);
     const newItem = JSON.stringify({name});
+    console.log(newItem);
     return fetch(`${BASE_URL}/items`, {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
@@ -18,12 +20,15 @@ const api = (function(){
   }
 
   function updateItem(id, updateData){
-      const random = JSON.stringify({updateData});
-      return fetch(`${BASE_URL}/items/${id}`, {
-          method: 'PATCH',
-          headers: {'Content-Type':'application/json'},
-          body: random
-      });
+    console.log(updateData);
+    const newName = JSON.stringify(updateData);
+    console.log(newName);
+    return fetch(`${BASE_URL}/items/${id}`, {
+      method: 'PATCH',
+      headers: {'Content-Type':'application/json'},
+      body: newName
+    });
+
   }
 
   return {
