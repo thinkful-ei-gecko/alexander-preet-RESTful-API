@@ -14,12 +14,13 @@ const api = (function(){
         })
         .then(data => {
             if (error) {
-                error.message = data.message;
-                return Promise.reject(error);
+                //error.message = data.message;
+                return Promise.reject(data.message);
             }
             return data; 
         })
-        .catch(err => {
+        .catch(error => {
+            //console.log(error);
             return Promise.reject(error);
           });
   }

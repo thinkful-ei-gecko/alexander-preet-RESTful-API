@@ -59,6 +59,7 @@ const shoppingList = (function(){
   
     // insert that HTML into the DOM
     $('.js-shopping-list').html(shoppingListItemsString);
+    //console.log(store.error);
 
     if (store.error != null) {
       $('.error-alert').html(store.error)
@@ -80,6 +81,7 @@ const shoppingList = (function(){
           render();
         })
         .catch(err => {
+          //console.log(err);
           store.setError(err);
           render();
         });
